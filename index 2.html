@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Rodriguez - Contemporary Artist & Mentor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;
+            --accent-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --gold-color: #ffd93d;
+            --light-bg: #f8f9ff;
+            --white: #ffffff;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: var(--transition);
+            mix-blend-mode: difference;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background: rgba(26, 26, 46, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .hero-description {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent-color);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: var(--white);
+        }
+
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-info {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .portfolio-info h4 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .portfolio-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Mentorship Section */
+        .mentorship {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .mentorship .section-title {
+            color: var(--white);
+        }
+
+        .mentorship .section-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .mentorship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .mentorship-card {
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .mentorship-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+        }
+
+        .mentorship-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .mentorship-card h4 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .mentorship-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: var(--light-bg);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .blog-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .blog-date {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .blog-content {
+            padding: 2.5rem;
+        }
+
+        .blog-category {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-details h5 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--light-bg);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 15px;
+            background: var(--white);
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .lightbox-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-description {
+            opacity: 0.8;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--light-bg);
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 2rem;
+        }
+
+        .testimonial-content {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--card-shadow);
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: var(--accent-color);
+            font-family: serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+
+        .author-info h5 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(26, 26, 46, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            color: var(--primary-color);
+        }
+
+        .testimonial-nav:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .testimonial-prev {
+            left: -25px;
+        }
+
+        .testimonial-next {
+            right: -25px;
+        }
+
+        /* Form Validation */
+        .form-group.error input,
+        .form-group.error textarea {
+            border: 2px solid var(--accent-color);
+        }
+
+        .form-error {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .form-success {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-loading {
+            position: relative;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+        }
+
+        .footer-bottom {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 5rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .portfolio-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 250px;
+                text-align: center;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .mentorship-card,
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Elena Rodriguez</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#mentorship">Mentorship</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-shapes">
+            <div class="shape">
+                <i class="fas fa-palette" style="font-size: 3rem; color: var(--accent-color);"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-paint-brush" style="font-size: 2.5rem; color: var(--secondary-color);"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-star" style="font-size: 2rem; color: var(--gold-color);"></i>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle">Contemporary Artist</div>
+            <h1 class="hero-title serif">Elena Rodriguez</h1>
+            <p class="hero-description">Crafting extraordinary visual experiences through innovative art and nurturing the creative spirits of tomorrow</p>
+            <div class="hero-cta">
+                <a href="#portfolio" class="btn btn-primary">Explore My Art</a>
+                <a href="#mentorship" class="btn btn-secondary">Join Mentorship</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">Get To Know Me</div>
+                <h2 class="section-title serif">About Elena</h2>
+                <p class="section-description">A passionate creator dedicated to pushing artistic boundaries and empowering the next generation of visionaries</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content fade-in-up">
+                    <h3 class="serif">My Creative Journey</h3>
+                    <p>For over two decades, I've been exploring the delicate balance between tradition and innovation in contemporary art. My work spans multiple mediums, from traditional oil paintings to digital installations, always seeking to capture the human experience in its most authentic form.</p>
+                    <p>My artistic philosophy centers on the belief that art should challenge, inspire, and transform. Each piece I create is a conversation between my inner world and the collective consciousness of our time.</p>
+                    <p>Beyond my personal practice, I'm deeply committed to mentoring emerging artists, helping them discover their unique voice and develop the technical skills needed to bring their visions to life.</p>
+                    <div class="about-stats">
+                        <div class="stat-item fade-in-up">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item fade-in-up">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Artworks Created</span>
+                        </div>
+                        <div class="stat-item fade-in-up">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Students Mentored</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80" alt="Elena Rodriguez in her studio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">My Creative Work</div>
+                <h2 class="section-title serif">Portfolio</h2>
+                <p class="section-description">A curated selection of my recent works exploring themes of identity, emotion, and human connection</p>
+            </div>
+            <div class="portfolio-filter fade-in-up">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Paintings</button>
+                <button class="filter-btn">Digital Art</button>
+                <button class="filter-btn">Sculptures</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&q=80" alt="Emotional Depths">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Emotional Depths</h4>
+                            <p>Oil on Canvas, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&q=80" alt="Urban Symphony">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Urban Symphony</h4>
+                            <p>Mixed Media, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&q=80" alt="Digital Dreams">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Digital Dreams</h4>
+                            <p>Digital Art, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1549289524-06cf8837ace5?w=500&q=80" alt="Nature's Whisper">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Nature's Whisper</h4>
+                            <p>Acrylic on Canvas, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=500&q=80" alt="Abstract Emotions">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Abstract Emotions</h4>
+                            <p>Mixed Media, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=500&q=80" alt="Sculptural Vision">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h4>Sculptural Vision</h4>
+                            <p>Bronze Sculpture, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="section mentorship">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">Nurture Your Creativity</div>
+                <h2 class="section-title serif">Mentorship Program</h2>
+                <p class="section-description">Join my comprehensive mentorship program designed to unlock your artistic potential and guide you on your creative journey</p>
+            </div>
+            <div class="mentorship-grid">
+                <div class="mentorship-card fade-in-up">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4>Technical Mastery</h4>
+                    <p>Master traditional and contemporary techniques through hands-on workshops and personalized instruction tailored to your artistic goals.</p>
+                </div>
+                <div class="mentorship-card fade-in-up">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Creative Development</h4>
+                    <p>Discover your unique artistic voice through guided exercises, critiques, and collaborative projects that challenge your creative boundaries.</p>
+                </div>
+                <div class="mentorship-card fade-in-up">
+                    <div class="mentorship-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Community & Networking</h4>
+                    <p>Connect with fellow artists, participate in group exhibitions, and build lasting relationships within the contemporary art community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section blog">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">Insights & Inspiration</div>
+                <h2 class="section-title serif">Latest Blog Posts</h2>
+                <p class="section-description">Explore my thoughts on contemporary art, creative processes, and the journey of artistic discovery</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80')">
+                        <div class="blog-date">Dec 15, 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Technique</div>
+                        <h4>The Evolution of Mixed Media in Contemporary Art</h4>
+                        <p>Exploring how modern artists are pushing boundaries by combining traditional techniques with digital innovations to create entirely new forms of expression.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80')">
+                        <div class="blog-date">Dec 10, 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Inspiration</div>
+                        <h4>Finding Your Authentic Artistic Voice</h4>
+                        <p>A personal reflection on the journey of self-discovery in art, and how embracing vulnerability can lead to the most powerful creative breakthroughs.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&q=80')">
+                        <div class="blog-date">Dec 5, 2024</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-category">Mentorship</div>
+                        <h4>The Importance of Artistic Community</h4>
+                        <p>Why connecting with fellow artists and mentors is crucial for creative growth, and how collaborative relationships can transform your artistic practice.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">What People Say</div>
+                <h2 class="section-title serif">Testimonials</h2>
+                <p class="section-description">Hear from students, collectors, and fellow artists about their transformative experiences</p>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Elena's mentorship transformed not just my technique, but my entire approach to art. Her guidance helped me find my authentic voice and develop the confidence to share my work with the world. The personalized attention and constructive feedback were invaluable."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612e5bb?w=150&q=80" alt="Sarah Chen" class="author-image">
+                                <div class="author-info">
+                                    <h5>Sarah Chen</h5>
+                                    <p>Emerging Artist & Former Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Working with Elena was a masterclass in contemporary art. Her portfolio speaks for itself, but her ability to translate complex emotions into visual narratives is what sets her apart. The commissioned piece she created for our gallery exceeded all expectations."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" alt="Marcus Thompson" class="author-image">
+                                <div class="author-info">
+                                    <h5>Marcus Thompson</h5>
+                                    <p>Gallery Director, Artspace Modern</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"Elena's mentorship program is exceptional. Her structured approach combined with personalized guidance helped me transition from hobbyist to professional artist. The networking opportunities and exhibition chances she provided were game-changing."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80" alt="Maria Rodriguez" class="author-image">
+                                <div class="author-info">
+                                    <h5>Maria Rodriguez</h5>
+                                    <p>Professional Artist & Mentorship Graduate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="testimonial-nav testimonial-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="testimonial-nav testimonial-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="testimonial-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <div class="section-subtitle">Let's Connect</div>
+                <h2 class="section-title serif">Get In Touch</h2>
+                <p class="section-description">Ready to start your artistic journey or collaborate on a project? I'd love to hear from you</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in-up">
+                    <h3 class="serif">Let's Start a Conversation</h3>
+                    <p style="color: var(--text-light); margin-bottom: 3rem;">Whether you're interested in mentorship, commissioning a piece, or simply want to discuss art, I'm always excited to connect with fellow creatives.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Email</h5>
+                            <p>elena@artisticvisions.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Phone</h5>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Studio Location</h5>
+                            <p>Downtown Arts District<br>Los Angeles, CA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form fade-in-up" id="contactForm">
+                    <div class="form-success" id="formSuccess">
+                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="form-error">Please enter your full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="form-error">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                        <div class="form-error">Please enter a subject</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <div class="form-error">Please enter your message (minimum 10 characters)</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo serif" style="font-size: 1.5rem;">Elena Rodriguez</div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elena Rodriguez. All rights reserved. | Crafted with passion for art and creativity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img src="" alt="" id="lightboxImage">
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-description" id="lightboxDescription"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Portfolio filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.textContent.toLowerCase();
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        // This is a simple demo - in a real app you'd have data attributes
+                        item.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDescription = document.getElementById('lightboxDescription');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        
+        let currentImageIndex = 0;
+        const portfolioImages = [
+            {
+                src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=80',
+                title: 'Emotional Depths',
+                description: 'Oil on Canvas, 2024 - A profound exploration of human emotion through abstract expressionism'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1200&q=80',
+                title: 'Urban Symphony',
+                description: 'Mixed Media, 2024 - Contemporary city life captured in vibrant colors and dynamic forms'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=1200&q=80',
+                title: 'Digital Dreams',
+                description: 'Digital Art, 2024 - Merging traditional techniques with modern digital innovation'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1549289524-06cf8837ace5?w=1200&q=80',
+                title: 'Nature\'s Whisper',
+                description: 'Acrylic on Canvas, 2023 - The delicate conversation between humanity and nature'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1200&q=80',
+                title: 'Abstract Emotions',
+                description: 'Mixed Media, 2023 - Pure emotion translated into color, form, and texture'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=1200&q=80',
+                title: 'Sculptural Vision',
+                description: 'Bronze Sculpture, 2023 - Three-dimensional exploration of space and form'
+            }
+        ];
+        
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxContent();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function updateLightboxContent() {
+            const image = portfolioImages[currentImageIndex];
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.title;
+            lightboxTitle.textContent = image.title;
+            lightboxDescription.textContent = image.description;
+        }
+        
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % portfolioImages.length;
+            updateLightboxContent();
+        }
+        
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % portfolioImages.length;
+            updateLightboxContent();
+        }
+        
+        // Event listeners for lightbox
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', nextImage);
+        lightboxPrev.addEventListener('click', prevImage);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+        });
+        
+        // Add click listeners to portfolio items
+        document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+        
+        // Testimonials carousel
+        const testimonialTrack = document.querySelector('.testimonials-track');
+        const testimonialPrev = document.querySelector('.testimonial-prev');
+        const testimonialNext = document.querySelector('.testimonial-next');
+        const dots = document.querySelectorAll('.dot');
+        
+        let currentTestimonial = 0;
+        const totalTestimonials = 3;
+        
+        function updateTestimonialPosition() {
+            if (testimonialTrack) {
+                testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentTestimonial);
+                });
+            }
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonialPosition();
+        }
+        
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonialPosition();
+        }
+        
+        if (testimonialNext && testimonialPrev) {
+            testimonialNext.addEventListener('click', nextTestimonial);
+            testimonialPrev.addEventListener('click', prevTestimonial);
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentTestimonial = index;
+                updateTestimonialPosition();
+            });
+        });
+        
+        // Auto-play testimonials
+        setInterval(nextTestimonial, 6000);
+        
+        // Enhanced contact form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldType = field.type;
+            const fieldName = field.name;
+            let isValid = true;
+            
+            // Remove previous error state
+            field.parentNode.classList.remove('error');
+            
+            if (!value) {
+                isValid = false;
+            } else if (fieldType === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                }
+            } else if (fieldName === 'message' && value.length < 10) {
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                field.parentNode.classList.add('error');
+            }
+            
+            return isValid;
+        }
+        
+        function validateForm() {
+            const fields = contactForm.querySelectorAll('input, textarea');
+            let isFormValid = true;
+            
+            fields.forEach(field => {
+                if (!validateField(field)) {
+                    isFormValid = false;
+                }
+            });
+            
+            return isFormValid;
+        }
+        
+        if (contactForm) {
+            // Real-time validation
+            contactForm.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('blur', () => validateField(field));
+                field.addEventListener('input', () => {
+                    if (field.parentNode.classList.contains('error')) {
+                        validateField(field);
+                    }
+                });
+            });
+            
+            // Form submission
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('btn-loading');
+                submitBtn.textContent = 'Sending...';
+                
+                try {
+                    // Simulate form submission (replace with actual API call)
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Show success message
+                    formSuccess.style.display = 'block';
+                    contactForm.reset();
+                    
+                    // Scroll to success message
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                    
+                } catch (error) {
+                    alert('Sorry, there was an error sending your message. Please try again.');
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('btn-loading');
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+        }
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            // Initialize testimonials after page load
+            updateTestimonialPosition();
+        });
+    </script>
+</body>
+</html>
